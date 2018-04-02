@@ -3,10 +3,95 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>ru.test</groupId>
     <artifactId>maven-test</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.2</version>
 
+
+
+    <scm>
+        <connection>scm:git:https://github.com/alexeymishkin/maven-test.git</connection>
+        <developerConnection>scm:git:https://github.com/alexeymishkin/maven-test.git</developerConnection>
+        <url>https://github.com/alexeymishkin/maven-test.git</url>
+    </scm>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <doCheck>false</doCheck>
+                    <doUpdate>false</doUpdate>
+                        <shortRevisionLength>5</shortRevisionLength>
+                </configuration>
+            </plugin>
+            <!--plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-plugin</artifactId>
+                <version>1.9.5</version>
+                <configuration>
+                    <connectionType>connection</connectionType>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>tag</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>tag</goal>
+                        </goals>
+                        <configuration>
+                            <basedir>.</basedir>
+                            <tag>qweqwe</tag>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.5</version>
+                <executions>
+                    <execution>
+                        <id>remove_snapshot</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>set</goal>
+                        </goals>
+                        <configuration>
+                            <removeSnapshot>true</removeSnapshot>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>increment_version</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>set</goal>
+                        </goals>
+                        <configuration>
+                            <nextSnapshot>true</nextSnapshot>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin-->
+
+        </plugins>
+    </build>
 
 </project>
